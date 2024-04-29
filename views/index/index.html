@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh" data-hairline="true" data-theme="light">
+<head>
+    <meta charset="utf-8"/>
+    <title data-react-helmet="true">首页 - 知乎</title>
+</head>
+<body>
+<div>
+    <div data-zop-usertoken="{}" data-reactroot="">
+        <div></div>
+        <div>
+            {{template "header.html" .}}
+            <main role="main">
+                <div>
+                    <div>
+                        <div>
+                            <div>
+                                <div>
+                                    <div>
+                                        <a href="/question" target="_blank" title="回答">
+                                            <svg
+
+                                            >
+                                                <title></title>
+                                                <g>
+                                                    <g>
+                                                        <path/>
+                                                        <path/>
+                                                    </g>
+                                                </g>
+                                            </svg>
+                                            回答</a>
+                                        <a href="//zhuanlan.zhihu.com/write" target="_blank"
+                                           title="写文章">
+                                            <svg
+
+                                            >
+                                                <title></title>
+                                                <g>
+                                                    <g>
+                                                        <path
+                                                        />
+                                                        <path
+                                                                stroke-width="1.5"/>
+                                                        <path
+                                                        />
+                                                    </g>
+                                                </g>
+                                            </svg>
+                                            写文章</a>
+                                    </div>
+                                    <a href="/draft" target="_blank"
+                                       title="草稿">草稿</a>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    {{range $topStorykey,$topStory:=.topStory}}
+                                    <div>
+                                        <button
+                                                data-tooltip="不感兴趣" data-tooltip-position="bottom" type="button">
+                                            <svg
+
+                                            >
+                                                <title></title>
+                                                <g>
+                                                    <path/>
+                                                </g>
+                                            </svg>
+                                        </button>
+                                        <div>
+                                            <div>
+                                                <div>
+                                                    {{if eq $topStory.Type 0}}<span><div
+                                                ><div id="null-toggle" aria-haspopup="true"
+                                                      aria-expanded="false"
+                                                      aria-owns="null-content">
+                      <a data-za-detail-view-element_name="User" target="_blank"
+                         href="/people/{{$topStory.User.URLToken}}">{{$topStory.User.Name}}</a></div></div>
+                </span> 新增了提问<span> · </span>{{$topStory.Question.DateCreated}}
+                                                    {{else if eq $topStory.Type 1}}<span><div
+                                                ><div id="null-toggle" aria-haspopup="true"
+                                                      aria-expanded="false"
+                                                      aria-owns="null-content">
+                      <a data-za-detail-view-element_name="User" target="_blank"
+                         href="/people/{{$topStory.User.URLToken}}">{{$topStory.User.Name}}</a></div></div></span> 回答了问题<span> · </span>{{$topStory.Answer.DateCreated}}
+                                                    {{else if eq $topStory.Type 2}}<span><div
+                                                ><div id="null-toggle" aria-haspopup="true"
+                                                      aria-expanded="false"
+                                                      aria-owns="null-content">
+                      <a data-za-detail-view-element_name="User" target="_blank"
+                         href="/people/{{$topStory.User.URLToken}}">{{$topStory.User.Name}}</a></div></div></span> 关注了问题<span> · </span>{{$topStory.DateCreated}}
+                                                    {{else if eq $topStory.Type 3}}<span><div
+                                                ><div id="null-toggle" aria-haspopup="true"
+                                                      aria-expanded="false"
+                                                      aria-owns="null-content">
+                      <a data-za-detail-view-element_name="User" target="_blank"
+                         href="/people/{{$topStory.User.URLToken}}">{{$topStory.User.Name}}</a></div></div></span> 赞同了回答<span> · </span>{{$topStory.DateCreated}}
+                                                    {{else}}热门内容, 来自: {{$topic := index
+                                                    $topStory.Answer.Question.Topics 0}}
+                                                    <span><a href="/topic/{{$topic.ID}}"
+                                                             target="_blank">
+                <div>
+                 <div id="null-toggle" aria-haspopup="true" aria-expanded="false" aria-owns="null-content">
+                  {{$topic.Name}}
+                 </div>
+                </div></a></span>
+                                                    {{end}}
+                                                </div>
+                                                {{if $topStory.Answer}}
+                                                <div
+                                                        itemscope=""
+                                                        itemtype="http://schema.org/Person">
+                                                    <meta content="{{$topStory.Answer.Author.Name}}"/>
+                                                    <meta
+                                                            content="{{$topStory.Answer.Author.AvatarURL}}"/>
+                                                    <meta
+                                                            content="{{$topStory.Answer.Author.URLToken}}"/>
+                                                    <meta itemprop="zhihu:followerCount"/>
+                                                    <span>
+               <div>
+                <div id="null-toggle" aria-haspopup="true" aria-expanded="false" aria-owns="null-content">
+                 <a data-za-detail-view-element_name="User" target="_blank"
+                    href="//{{$topStory.Answer.Author.URLToken}}"><img
+
+                         src="{{$topStory.Answer.Author.AvatarURL}}"
+                         alt="{{$topStory.Answer.Author.Name}}"/></a>
+                </div>
+               </div></span>
+                                                    <div>
+                                                        <div>
+                <span>
+                 <div>
+                  <div id="null-toggle" aria-haspopup="true" aria-expanded="false" aria-owns="null-content">
+                   <a data-za-detail-view-element_name="User" target="_blank"
+                      href="//{{$topStory.Answer.Author.URLToken}}">{{$topStory.Answer.Author.Name}}</a>
+                  </div>
+                 </div></span>
+                                                        </div>
+                                                        <div>
+                                                            <div>
+                                                                <div>
+                                                                    {{$topStory.Answer.Author.Headline}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{end}}
+                                            </div>
+                                            {{if $topStory.Answer}}
+                                            <div
+                                                    data-zop="{&quot;authorName&quot;:&quot;{{$topStory.Answer.Author.Name}}&quot;,&quot;itemId&quot;:{{$topStory.Answer.ID}},&quot;title&quot;:&quot;{{$topStory.Answer.Question.Title}}&quot;,&quot;type&quot;:&quot;answer&quot;}"
+                                                    name="{{$topStory.Answer.ID}}"
+                                                    itemtype="http://schema.org/Answer" itemscope="">
+                                                <h2>
+                                                    <div itemprop="zhihu:question" itemtype="http://schema.org/Question"
+                                                         itemscope="">
+                                                        <meta
+                                                                content="https://www.zhihu.com/question/{{$topStory.Answer.Question.ID}}"/>
+                                                        <meta
+                                                                content="{{$topStory.Answer.Question.Title}}"/>
+                                                        <a target="_blank" data-za-detail-view-element_name="Title"
+                                                           href="/question/{{$topStory.Answer.Question.ID}}/answer/{{$topStory.Answer.ID}}">{{$topStory.Answer.Question.Title}}</a>
+                                                    </div>
+                                                </h2>
+                                                <div></div>
+                                                <meta content="{{$topStory.Answer.Author.AvatarURL}}"/>
+                                                <meta
+                                                        content="{{$topStory.Answer.UpvoteCount}}"/>
+                                                <meta
+                                                        content="https://www.zhihu.com/question/{{$topStory.Answer.Question.ID}}/answer/{{$topStory.Answer.ID}}"/>
+                                                <meta
+                                                        content="{{$topStory.Answer.DateCreated}}"/>
+                                                <meta
+                                                        content="{{$topStory.Answer.DateModified}}"/>
+                                                <meta
+                                                        content="{{len $topStory.Answer.Comments}}"/>
+                                                <div>
+                                                    <div>
+                                                        <span
+                                                        >{{$topStory.Answer.Content}}</span>
+                                                        {{if gt (len $topStory.Answer.Content) 100}}
+                                                        <button
+                                                                type="button">阅读全文
+                                                            <svg
+
+
+                                                            >
+                                                                <title></title>
+                                                                <g>
+                                                                    <path/>
+                                                                </g>
+                                                            </svg>
+                                                        </button>
+                                                        {{end}}
+                                                    </div>
+                                                    <v>
+                  <span><button class="Button VoteButton VoteButton--up {{if .Upvoted}}is-active{{end}}"
+                                aria-label="赞同" type="button"><svg
+
+
+                  ><title></title><g><path
+                  /></g></svg>{{.UpvoteCount}}</button><button
+                          class="Button VoteButton VoteButton--down {{if .Downvoted}}is-active{{end}}" aria-label="反对"
+                          type="button"><svg
+
+                  ><title></title><g>
+                      <path/></g></svg></button>
+                  </span>
+                                                        <button
+                                                                type="button"><span
+                                                        >​
+                  <svg width="1.2em"
+                       height="1.2em">
+                  <path
+                  ></path>
+                  </svg></span>{{if eq $topStory.Answer.CommentCount 0}}添加评论{{else}}<span>{{$topStory.Answer.CommentCount}}</span>
+                                                            条评论{{end}}
+                                                        </button>
+                                                        <div>
+                                                            <div id="null-toggle" aria-haspopup="true"
+                                                                 aria-expanded="false" aria-owns="null-content">
+                                                                <button
+                                                                        type="button"><span
+                                                                >​
+                      <svg width="1.2em"
+                           height="1.2em">
+                      <path
+                      ></path>
+                      </svg></span>分享
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <button
+                                                                type="button"><span
+                                                        >
+                  <svg width="1.2em"
+                       height="1.2em">
+                  <path
+                  ></path>
+                  </svg></span>收藏
+                                                        </button>
+                                                        <button
+                                                                type="button"><span
+                                                        >​
+                  <svg width="1.2em"
+                       height="1.2em">
+                  <path
+                  ></path>
+                  </svg></span>感谢
+                                                        </button>
+                                                        <button
+                                                                data-zop-retract-question="true" type="button"><span
+                                                        >收起</span>
+                                                            <svg
+
+
+                                                            >
+                                                                <title></title>
+                                                                <g>
+                                                                    <path/>
+                                                                </g>
+                                                            </svg>
+                                                        </button>
+                                                </div>
+                                            </div>
+                                            {{else}}
+                                            <div data-za-detail-view-path-module="QuestionItem"
+                                                 data-za-extra-module="{&quot;card&quot;:{&quot;content&quot;:{&quot;type&quot;:&quot;Question&quot;,&quot;token&quot;:&quot;276638436&quot;,&quot;item_num&quot;:152,&quot;comment_num&quot;:5,&quot;follower_num&quot;:928,&quot;publish_timestamp&quot;:1525940370000}}}">
+                                                <h2>
+                                                    <div>
+                                                        <a href="/question/{{$topStory.Question.ID}}" target="_blank"
+                                                           data-za-detail-view-name="Title">{{$topStory.Question.Title}}</a>
+                                                    </div>
+                                                </h2>
+                                                <div>
+                                                    <div><span
+
+                                                    ></span></div>
+                                                    <div>
+                                                        <button type="button"
+                                                                class="Button FollowButton ContentItem-action {{if $topStory.Question.Followed}}Button--grey">
+                                                            已关注{{else}}Button--blue">关注问题{{end}}
+                                                        </button>
+                                                        <button type="button"
+                                                        ><span
+                                                                style="display: inline-flex; align-items: center;">&#8203;<svg
+
+                                                                width="1.2em" height="1.2em"><path
+
+                                                        ></path></svg>
+                </span>{{$topStory.Question.CommentCount}} 条评论
+                                                        </button>
+                                                        <div>
+                                                            <div id="Popover-80829-83169-toggle"
+                                                                 aria-haspopup="true" aria-expanded="false"
+                                                                 aria-owns="Popover-80829-83169-content">
+                                                                <button type="button"
+                                                                >
+                                                                    <span style="display: inline-flex; align-items: center;">&#8203;<svg
+
+
+                                                                            width="1.2em" height="1.2em"><path
+
+                                                                    ></path></svg></span>分享
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <a target="_blank" type="button"
+
+                                                           href="/question/276638436"><span
+                                                                style="display: inline-flex; align-items: center;">&#8203;<svg
+
+                                                                width="1.2em" height="1.2em"
+                                                                style="margin-right: 4px;"><path
+
+                                                        ></path></svg>
+                </span>{{$topStory.Question.AnswerCount}} 个回答</a></div>
+                                                </div>
+                                            </div>
+                                            {{end}}
+                                        </div>
+                                    </div>
+                                    {{end}}
+                                    <div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <div>
+                                    <div>
+                                        <ul>
+                                            <li><a
+                                                    href="/lives" target="_blank"
+                                                    title="Live" style="color:#ffcf00"
+                                                    type="button"><span
+                                            >
+               <svg>
+                <path></path>
+               </svg></span><span>Live</span></a></li>
+                                            <li><a
+                                                    href="/pub/" target="_blank"
+                                                    title="书店" style="color:#43d480"
+                                                    type="button"><span
+                                            >
+               <svg>
+                <path
+                ></path>
+               </svg></span><span>书店</span></a></li>
+                                            <li><a
+                                                    href="/roundtable" target="_blank"
+                                                    title="圆桌" style="color:#0084ff"
+                                                    type="button"><span
+                                            >
+               <svg>
+                <path></path>
+               </svg></span><span>圆桌</span></a></li>
+                                            <li><a
+                                                    href="//zhuanlan.zhihu.com"
+                                                    target="_blank" title="专栏"
+                                                    style="color:#0f88eb"
+                                                    type="button"><span
+                                            >
+               <svg>
+                <path></path>
+               </svg></span><span>专栏</span></a></li>
+                                            <li><a
+                                                    href="/zhi" target="_blank"
+                                                    title="付费咨询"
+                                                    style="color:#5478f0"
+                                                    type="button"><span
+                                            >
+               <svg>
+                <path></path>
+               </svg></span><span>付费咨询</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <ul>
+                                            <li><a
+
+                                                    href="/collections" target="_blank" type="button">
+                                                <svg
+                                                >
+                                                    <path
+                                                    ></path>
+                                                </svg>
+                                                <span>我的收藏</span></a></li>
+                                            <li><a
+                                                    target="_blank"
+                                                    type="button">
+                                                <svg
+                                                >
+                                                    <path
+                                                    ></path>
+                                                </svg>
+                                                <span>我关注的问题</span></a></li>
+                                            <li><a
+
+                                                    href="/question/invited" target="_blank" type="button">
+                                                <svg
+                                                >
+                                                    <path
+                                                    ></path>
+                                                </svg>
+                                                <span>我的邀请</span></a></li>
+                                            <li><a
+                                                    href="/community"
+                                                    target="_blank" type="button">
+                                                <svg
+                                                >
+                                                    <path
+                                                    ></path>
+                                                </svg>
+                                                <span>社区服务中心</span></a></li>
+                                            <li><a
+                                                    href="/copyright"
+                                                    target="_blank" type="button">
+                                                <svg
+                                                >
+                                                    <path
+                                                    ></path>
+                                                </svg>
+                                                <span>版权服务中心</span></a></li>
+                                            <li><a
+                                                    href="/watch"
+                                                    target="_blank" type="button">
+                                                <svg
+                                                >
+                                                    <path></path>
+                                                </svg>
+                                                <span>公共编辑动态</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <a href="http://zhi.hu/BDXoI">
+                                            <div>
+                                                <img
+                                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAEDElEQVR4Ae3cQW5cRwwE0FGgAzhA7porxGe1gRxBWev9RaHRPc0syrsCySKnCmRjJMgfP/759fW6+O/fv//61u3Pn7+/YePfgq/Xy3zj1ptv3Hqx9cZP4z9OE5ZvT4Easqff8eoaclzSPcJPy1dvrPXi1Ruc8p3PfLHz7GL77/I5bzdkV9HD9TXksKC7dDVkV8HD9Y83RH5vnHHx6o1N+fYX218sf6o3Xz5x4jM/8XdDVGwY15BhA2xfQ1RkGMc3ZHi+R/t0gy1YvfHW38bdkNuKh341JAh0O1xDbise+o2/Ias33vzVN0U9duvl28XdkF0FD9fXkMOC7tLVkF0FD9fHN+T2jU39fEOSHokv1af4af5uSFL8cryGXBY8tashSaHL8ccbsnqj3z2v83iz3x3389nP+C7uhuwqeLi+hhwWdJeuhuwqeLj+05t8mP843btvuAPf1qcbogPDuIYMG2D7GqIiw/hj9e9D0k1NN976lK8+1htf5bN+F+/O1w3ZdeBwfQ05LOguXQ3ZVfBw/eN7iDc43UTn2c23v/yrOM1jP/ON2z/lG7de3A1RkWFcQ4YNsH0NUZFh/PH19fXt79RXb6bzr9abn27uav7qfOY7j/3NTzjxdUOSgpfjNeSy4KldDUkKXY7Hn2V583bn8wbLn+Kpf6rfjdtfPuN+PuPiboiKDOMaMmyA7WuIigzj+LMs50s303yxN3WVbzXf/uLEl+J+HvkTlr8bkhS7HK8hlwVP7WpIUuhy/PGzrNX+3kDrV2+sfKl+Nd/5Ur1x69N85ie+boiKDeMaMmyA7WuIigzjz3TTVm+k+fKn+K4e9kt8zmO+8cSf4omvG6IDw7iGDBtg+xqiIsN4+XuIN9KbuPp5Ep/xxO88p+sTv/E0r/FuiIoM4xoybIDta4iKDOP4PcT50o1MNzvV20+c6lf7my+2f4qbL7bez9MNUbFhXEOGDbB9DVGRYfz4nfruPN7E/xtfmmd1ft8E+Y3Lb7wbooLDuIYMG2D7GqIiw3j5e8juvN5QceL35lovTnwpnvpZv5pvfTdERYZxDRk2wPY1REWG8eP/XHz3DfbzenONi9N88qV8+cWr9Snf+ezXDVGRYVxDhg2wfQ1RkWH8eEOcJ90889MNXc23v1i+hFN9iq/yr+rRDUkKX47XkMuCp3Y1JCl0OR7fkMvzvNIN9yabbzzNb37iM574U779uyFJ0cvxGnJZ8NSuhiSFLsfH35B0Y1f1SHze7JRv/1Rv3Hr7ibshKjaMa8iwAbavISoyjOMbkm7i6fnt540V2//d9fZbxc5nfTdERYZxDRk2wPY1REWG8eMNSTf69rzp5jpPml8+88XyW2/c+tX8boiKDuMaMmyA7WuIigzj/wC7sm2izpKNiwAAAABJRU5ErkJggg=="
+                                                />
+                                                <div>
+                                                    <div>
+                                                        下载知乎客户端
+                                                    </div>
+                                                    <div>
+                                                        与世界分享知识、经验和见解
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <div data-state="{{.dataState}}"></div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+    "server_config": {
+        "port": "",
+        "salt": "",
+        "session_key": "",
+        "session_secret": ""
+    },
+    "redis_config": {
+        "host": "127.0.0.1",
+        "port": "",
+        "password": ""
+    },
+    "mysql_config": {
+        "driver_name": "mysql",
+        "user": "root",
+        "password": "(PanandSu521125)",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "database_name": "zhihu"
+    }
+}
+

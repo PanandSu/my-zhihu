@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+{{template "header.html" .}}
+回答 写文章 草稿
+{{range $topStory := .topStory}}
+    {{if eq $topStory.Type 0}}
+        {{$topStory.User.Name}} 新增了提问 · {{$topStory.Question.DateCreated}}
+    {{else if eq $topStory.Type 1}}
+        {{$topStory.User.Name}} 回答了问题 · {{$topStory.Answer.DateCreated}}
+    {{else if eq $topStory.Type 2}}
+        {{$topStory.User.Name}} 关注了问题 · {{$topStory.DateCreated}}
+    {{else if eq $topStory.Type 3}}
+        {{$topStory.User.Name}} 赞同了回答 · {{$topStory.DateCreated}}
+    {{else}}
+		热门内容，来自：{{$topic := index $topStory.Answer.Question.Topics 0}}
+        {{$topic.Name}}
+    {{end}}
+
+    {{if $topStory.Answer}}
+		<p>
+			<strong>{{$topStory.Answer.Author.Name}}</strong> - <em>{{$topStory.Answer.Author.Headline}}</em>
+			<br>
+			<time datetime="{{$topStory.Answer.DateCreated}}">{{$topStory.Answer.DateCreated}}</time>
+			<br>
+			<a href="/question/{{$topStory.Answer.Question.ID}}">{{$topStory.Answer.Question.Title}}</a>
+			<br>
+            {{if gt (len $topStory.Answer.Content) 100}}
+                {{truncate $topStory.Answer.Content 100}}...
+            {{else}}
+                {{$topStory.Answer.Content}}
+            {{end}}
+			<br>
+			<button>阅读全文</button>
+			<br>
+			<span class="upvote-count">{{$topStory.Answer.UpvoteCount}} 点赞</span>
+            {{if eq $topStory.Answer.CommentCount 0}}
+				<button>添加评论</button>
+            {{else}}
+				<span class="comment-count">{{$topStory.Answer.CommentCount}} 条评论</span>
+            {{end}}
+			<br>
+			<button>分享</button>
+			<button>收藏</button>
+			<button>感谢</button>
+			<button>收起</button>
+		</p>
+    {{else}}
+		<p>
+			<a href="/question/{{$topStory.Question.ID}}">{{$topStory.Question.Title}}</a>
+			<br>
+            {{if $topStory.Question.Followed}}
+				<span class="follow-status">已关注</span>
+            {{else}}
+				<button class="Button--blue">关注问题</button>
+            {{end}}
+			<br>
+			<span class="comment-count">{{$topStory.Question.CommentCount}} 条评论</span>
+			<span class="answer-count">{{$topStory.Question.AnswerCount}} 个回答</span>
+			<br>
+			<button>分享</button>
+		</p>
+    {{end}}
+{{end}}
+</body>
+</html>
+

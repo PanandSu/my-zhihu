@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+{{template "header.html" .}}
+回答 写文章 草稿
+<div>
+    {{range $topStorykey,$topStory:=.topStory}}
+		<div>
+            {{if eq $topStory.Type 0}}
+				{{$topStory}}
+                {{$topStory.User.Name}} 新增了提问 · {{$topStory.Question.DateCreated}}
+            {{else if eq $topStory.Type 1}}
+                {{$topStory.User.Name}} 回答了问题 · {{$topStory.Answer.DateCreated}}
+            {{else if eq $topStory.Type 2}}
+                {{$topStory.User.Name}} 关注了问题 · {{$topStory.DateCreated}}
+            {{else if eq $topStory.Type 3}}
+                {{$topStory.User.Name}} 赞同了回答 · {{$topStory.DateCreated}}
+            {{else}}
+				热门内容, 来自: {{$topic := index $topStory.Answer.Question.Topics 0}}
+                {{$topic.Name}}
+            {{end}}
+		</div>
+		<div>
+            {{if $topStory.Answer}}
+                {{$topStory.Answer.Author.Name}}
+                {{$topStory.Answer.Author.Headline}}
+                {{$topStory.Answer.Question.Title}}
+                {{if gt (len $topStory.Answer.Content) 100}}
+					阅读全文
+                {{else}}
+                    {{$topStory.Answer.Content}}
+                {{end}}
+                {{.UpvoteCount}}
+                {{if eq $topStory.Answer.CommentCount 0}}
+					添加评论
+                {{else}}
+                    {{$topStory.Answer.CommentCount}}条评论
+                {{end}}
+				分享 收藏 感谢 收起
+            {{else}}
+                {{$topStory.Question.Title}}
+                {{if $topStory.Question.Followed}}
+					已关注
+                {{else}}
+					关注问题
+                {{end}}
+                {{$topStory.Question.CommentCount}} 条评论
+                {{$topStory.Question.AnswerCount}} 个回答
+				分享
+            {{end}}
+		</div>
+    {{end}}
+</div>
+
+{{template "footer.html" .}}
+</body>
+</html>
