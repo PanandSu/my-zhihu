@@ -13,7 +13,7 @@
     "mysql_config": {
         "driver_name": "mysql",
         "user": "root",
-        "password": "(PanandSu521125)",
+        "password": "****",
         "host": "127.0.0.1",
         "port": "3306",
         "database_name": "zhihu"
